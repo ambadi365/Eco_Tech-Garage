@@ -1,0 +1,126 @@
+{% extends 'service.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section class="contact_section layout_padding">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form_container">
+                <div class="heading_container">
+                  <h2>
+                    BOOKING DETAILS
+                  </h2>
+                </div>
+                <form action="" method="post">
+                  {% csrf_token %}
+                  <div>
+                    <input type="text" placeholder="Full Name "  name="m_name" required/>
+                  </div>
+                  <div>
+                    <input type="email" placeholder="Email" name="email_n" required/>
+                  </div>
+                  <div>
+                    <input type="text" placeholder="Contact number" name="phone_n" required />
+                  </div>
+                  <div>
+                    <input type="date" placeholder="Enter a date" name="date" required />
+                  </div>
+                  <div>
+                    <input type="text" class="message-box" placeholder="Message" name="msg_n"  />
+                  </div>
+                  
+                  <div class="d-flex ">
+                    <button type="submit" style="background-color: rgb(238, 77, 13); color: aliceblue;" name="booking">
+                      SEND
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <div class="img-box">
+                <img src="{% static 'assets/images/contact-img.jpg' %}" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <!-- end contact section -->
+    
+      <!-- map section -->
+    
+      <section class="map_section">
+        <div class="map_container">
+          <div class="map">
+            <div id="googleMap"></div>
+          </div>
+        </div>
+      </section>
+    
+      <!-- end map section -->
+    
+      <!-- info section -->
+    
+      <section class="info_section ">
+        <div class="info_container ">
+          <div class="container">
+            <div class="info_contact ">
+              <a href="#" class="link-box">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span>
+                  Location
+                </span>
+              </a>
+              <a href="#" class="link-box">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>
+                  Call +01 1234567890
+                </span>
+              </a>
+              <a href="#" class="link-box">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span>
+                  demo@gmail.com
+                </span>
+              </a>
+            </div>
+            <div class="social_container">
+              <div class="heading_container heading_center">
+                <h2>
+                  Follow Us
+                </h2>
+                <p class="col-md-6 col-lg-5 mx-auto px-0">
+                  Aliquam, aut. Quam adipisci error nulla repellendus nihil asperiores, deserunt sed veritatis. Dolores magnam aperiam omnis! Architecto odit consectetur maxime consequatur ipsum.
+                </p>
+              </div>
+              <div class="social-box">
+                <a href="">
+                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>
+                <a href="">
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+                <a href="">
+                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a href="">
+                  <i class="fa fa-youtube" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+</body>
+</html>
+{% endblock content %}

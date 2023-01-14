@@ -1,0 +1,101 @@
+{% extends 'service.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <section class="about_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="img-box ">
+            <img src="{{ single_service.0.image.url }}" class="box_img" alt="about img">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="detail-box pr-md-2">
+            <div class="heading_container">
+              <center><h2 class="" style="padding:5px;">
+                {{ single_service.0.service | upper }}
+              </h2></center>
+            </div>
+            <p class="detail_p_mt">
+             
+           
+              {{ single_service.0.discription }}
+           
+            </p>
+            
+          
+            <div class="card-body">
+             
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Detail Services</th>
+                      <th>Time Required</th>
+                      <th>Slot Status</th>
+                      
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                   {% for item in single_service %}
+                    <tr>
+                      <td>{{ item.service_detail_name }}</td>
+                      <td>{{ item.time_required }} HOUR</td>
+                      <td>{{ item.slot_status }} </td>
+                     
+                     
+                    </tr>
+              {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            {% if request.session.userid %}
+              <div class="btn-box">
+                     
+                <a href="/booking?serv_id={{ serv_id }}" class="btn-1" name="register">
+                  BOOK NOW
+                </a>
+              </div>
+             
+              {% else %}
+              <div class="btn-box">
+                     
+                <a href="/login/" class="btn-1">
+                  BOOK NOW
+                </a>
+              </div>
+              {% endif %}
+
+          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+                    
+           
+          
+              
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+ 
+</body>
+</html>
+{% endblock content %}

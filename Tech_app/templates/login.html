@@ -1,0 +1,91 @@
+{% extends 'service.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section class="contact_section layout_padding">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form_container">
+                <div class="heading_container">
+                  <h2>
+                    Register Form
+                  </h2>
+                </div>
+                <form action="" method="post">
+                  {% csrf_token %}
+                  <div>
+                    <input type="text" placeholder="Username "  name="name" required/>
+                  </div>
+                  <div>
+                    <input type="email" placeholder="Email" name="email" required/>
+                  </div>
+                  <div>
+                    <input type="text" placeholder="Phone number" name="phone" required/>
+                  </div>
+                  <div>
+                    <input type="password" placeholder="Password" name="paswd" required />
+                  </div>
+                  <div>
+                    <input type="password" placeholder="Comfirm Password" name="con_paswd" required />
+                  </div>
+                  
+                  <div class="d-flex ">
+                    <button type="submit" style="background-color:rgb(233, 76, 37); color: rgb(253, 250, 250);" name="register" >
+                      REGISTER
+                    </button>
+                  </div>
+                  <h>{{msg1}}</h>
+                </form>
+              </div>
+            </div>
+            <div class="col-md-7">
+                <div class="img-box">
+                   
+                    <section class="contact_section layout_padding">
+                
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-md-10">
+                              <div class="form_container">
+                                <div class="heading_container">
+                                  <h2>
+                                    Login
+                                  </h2>
+                                </div>
+                  <form action="" method="post">
+                      {% csrf_token %}
+                        <div>
+                          <input type="text" placeholder=" Username "  name="name" required/>
+                        </div>
+                        <div>
+                          <input type="password" placeholder="password" name="password" required/>
+                        </div>
+                      
+                        <div class="d-flex ">
+                          
+                          <button type="submit" style="background-color:rgb(233, 76, 37);color: rgb(253, 250, 250);" name="login">
+                            LOGIN
+                          </button>
+                        
+                        </div>
+                        <h>{{msg}}</h>
+                      </form>
+                <!-- <img src="{% static 'assets/images/contact-img.jpg' %}" alt=""> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+</body>
+</html>
+{% endblock content %}

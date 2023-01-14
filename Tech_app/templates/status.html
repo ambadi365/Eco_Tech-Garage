@@ -1,0 +1,97 @@
+{% extends 'service.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  {% if datas %}
+    <section class="about_section layout_padding">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="img-box ">
+                <img src="{{ single_service.0.image.url }}" class="box_img" alt="">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="detail-box pr-md-2">
+                <div class="heading_container">
+                  <center><h2 class="" style="padding:5px;">
+                    {{ single_service.0.service | upper }}
+                  </h2></center>
+                </div>
+                <p class="detail_p_mt">
+                 
+               
+                  {{ single_service.0.discription }}
+               
+                </p>
+                
+              
+                <div class="card-body">
+              
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Services Rendered</th>
+                          <th>Amount</th>
+                          <th>Status</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                       {% for item in datas %} 
+                        <tr>
+                          <td>{{ item.services_rendered  }}</td>
+                          <td>Rs {{ item.amount	 }}</td>
+                          
+                          <td>{{ item.booking.slot_status }} </td>
+                         
+                        </tr>
+                  {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                 
+                  
+                </div>
+               
+                  <div class="btn-box">
+                         
+                    <a href="" class="btn-1" name="register">
+                      Pay
+                    </a>
+                  </div>
+                   {% else %}
+                 <center> <h1>no data</h1></center>
+                 
+             
+    
+              
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                        
+                {% endif %}
+              
+                  
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </section>
+</body>
+</html>
+{% endblock content %}
