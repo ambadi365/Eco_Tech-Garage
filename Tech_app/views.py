@@ -119,7 +119,7 @@ def Contact(request):
 
 
 
-# @login_required
+@login_required
 def Single_Service(request, serv_id):
 
 
@@ -167,6 +167,7 @@ def status(request):
     return render(request,'status.html',{'datas':data})
 
 
+@login_required
 def success(request):
     print(request.GET['payment_request_id'])
     payment_request_id = request.GET['payment_request_id']
