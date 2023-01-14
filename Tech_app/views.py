@@ -4,7 +4,19 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from .decorators import login_required
+from instamojo_wrapper import Instamojo
+from Echo_Tech.settings import env
 # Create your views here.
+
+
+api = Instamojo(api_key=env('API_KEY'),auth_token=env('AUTH_TOKEN'),endpoint='https://test.instamojo.com/api/1.1/')
+import socket
+
+try:
+    HOSTNAME = socket.gethostname()
+except:
+    HOSTNAME = 'none'
+
 
 def Login(request):
     if 'register'in request.POST:
@@ -132,18 +144,38 @@ def Logout(request):
     
 
 
-
+@login_required
 def status(request):
     data= ServiceStatusDetail.objects.select_related('booking__service').filter(booking__user=request.session['userid'])
-   
+    if 'pay-bill' in request.POST:
+        amount= request.POST['amount']
+        email= request.POST['email']
+        id= request.POST['id']
+        purpose='car service'
+        name=request.POST['name']
+        response = api.payment_request_create(
+            amount=amount,
+            purpose=purpose,
+            buyer_name=name,
+            send_email=True,
+            email=email,
+            redirect_url= request.build_absolute_uri('/')+'success/'
+        )
+        obj = ServiceStatusDetail.objects.filter(id=id).update(payment_request_id=response['payment_request']['id'])   
+        return redirect(response['payment_request']['longurl'])
     
-   
-        
-
     return render(request,'status.html',{'datas':data})
 
 
+def success(request):
+    print(request.GET['payment_request_id'])
+    payment_request_id = request.GET['payment_request_id']
+    payment_status = request.GET['payment_status']
+    payment_id = request.GET['payment_id']
+    obj = ServiceStatusDetail.objects.filter(payment_request_id=payment_request_id).update(payment_id=payment_id,payment_status=payment_status)
 
+
+    return render(request,'success.html',{'status':payment_status})
 
 
 

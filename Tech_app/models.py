@@ -61,7 +61,6 @@ class ServiceStatusDetail(models.Model):
     services_rendered = models.CharField(max_length=200,null=True,blank=True)
     amount	 = models.IntegerField(null=True)
     booking = models.ForeignKey(ServiceBooking,on_delete=models.CASCADE ,null=True)
-   
     payment_request_id = models.CharField(max_length=300,null=True,blank=True)
     payment_id = models.CharField(max_length=300,null=True,blank=True)
     payment_status = models.CharField(max_length=100,default='pending')

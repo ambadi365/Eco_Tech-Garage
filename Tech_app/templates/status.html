@@ -48,13 +48,30 @@
                       </thead>
                       <tbody>
                        {% for item in datas %} 
+                       <form action="" method="post">
+                        {% csrf_token %}
                         <tr>
                           <td>{{ item.services_rendered  }}</td>
+                          {%if item.amount == None %}
+                          <td><span class="badge badge-warning">Not Updated</span></td>
+                          {% else %}
                           <td>Rs {{ item.amount	 }}</td>
-                          
-                          <td>{{ item.booking.slot_status }} </td>
                          
+                          {% endif %}
+                          <td>{{ item.booking.slot_status }} </td>
+                          {% if item.amount != None %}
+                          <td> <div class="btn-box" >
+                          <input type="hidden" name="id" value="{{item.id}}">
+                         <input type="hidden" name="email" value="{{item.booking.email}}">
+                         <input type="hidden" name="amount" value="{{item.amount}}"> 
+                         <input type="hidden" name="name" value="{{item.booking.Aname}}">  
+                         <button class="btn btn-success" name="pay-bill"  >
+                              Pay
+                            </button>
+                          </div></td>
+                          {% endif %}
                         </tr>
+                      </form>
                   {% endfor %}
                       </tbody>
                     </table>
@@ -63,12 +80,7 @@
                   
                 </div>
                
-                  <div class="btn-box">
-                         
-                    <a href="" class="btn-1" name="register">
-                      Pay
-                    </a>
-                  </div>
+                 
                    {% else %}
                  <center> <h1>no data</h1></center>
                  

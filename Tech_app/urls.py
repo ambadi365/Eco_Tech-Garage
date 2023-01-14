@@ -13,6 +13,7 @@ urlpatterns = [
     path('respond/',views.Respond,name='respond'),
     path('status/',views.status,name='status'),
     path('contact/',views.contact_us,name='contact_us'),
+    path('success/',views.success,name='success'),
     
     
     
